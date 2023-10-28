@@ -3,8 +3,11 @@ import sys
 """
 Utilization 2(U2 50% 2K Watts) O2 Continuous 30 – 60 min, 18 - 20 spm
 Utilization 1 (U1 60% 2K Watts) O2 LA Continuous work or Long interval 10 – 30 min, 20 - 24 spm
+    2x15' 1x30' 3x15'
 Anaerobic Threshold (AT 70% 2K Watts) LA O2 Long interval 5 – 20 min, 24 - 28 spm
+    6x2k 3r     4x8' 4r     2x14' 8r
 Transportation(TN 105% 2K Watts) ATP-PC LA O2 Moderate interval 90 sec - 5 min, 28 - 32 spm
+    4x4'3r    5x1000 3r     6x2:30' 3r   15x3' 1r 
 """
 
 
@@ -40,11 +43,10 @@ SR = ["18-20", "20-24", "24-28", "28-32"]
 paces_s = [22, 18, 99, 99] # 2K-X
 paces_p = [0.55, 0.65, 0.75, 1.05] # 2K*X
 
-s = "{:5} {:^5} | {:^10}     {:^10}     {:^6}\n".format("CAT", "SR", "2K-X", "%2KW", "WL")
+s = "{:5} {:^5} | {:^10}     {:^6}\n".format("CAT", "SR", "%2KW", "WL")
 s += "======================================================\n"
 for i,_ in enumerate(cats):
-    s += "{:5} {:5} | {:10} ... {:10} ... {:6}\n".format(cats[i], SR[i],
-        "({}) ".format(paces_s[i]) + s_to_fm(m_to_s(P) + paces_s[i]),
+    s += "{:5} {:5} | {:10} ... {:6}\n".format(cats[i], SR[i],
         "({:3}%) ".format(int(paces_p[i]*100)) + watts_to_pace(W * paces_p[i]),
         wo_l[i]
     )
