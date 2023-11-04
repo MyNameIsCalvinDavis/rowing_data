@@ -13,7 +13,7 @@ Upload a C2 season csv and breakdown basic data like HR, pace, etc over time. Oo
 
 ![image](/pictures/row_data.png)
 
-Incidentally this also tabularizes your rowing data. Currently the categorization of each workout is based on the "Comment" column structure you see in this image, but in _Rowing_V2.ipynb_ this is calculated based on time-window averages (configurable) using data retrieved from your most recent set of workouts. So if you do a UT2 workout, that should be categorized automatically from your average split for that workout, based on your most recent 2K wattage.
+In the first file, categorization of each workout is based on the "Comment" column, but in _Rowing_V2.ipynb_ this is calculated based on data retrieved from your most recent set of workouts, specifically delimited by 2K workouts over the season, and then workout categories are derived from that time. Here's an example of formatted data in the first version:
 
 ![image](/pictures/table.png)
 
