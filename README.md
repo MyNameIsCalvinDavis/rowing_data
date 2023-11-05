@@ -5,7 +5,7 @@ Scripts that keep track of parsed rowing data
 
 Plug in a 2K pace to create a small chart depicting other threshold workout paces, based on various metrics.
 
-![image](/pictures/pp.png)
+![image](/pictures/p2.png)
 
 **_Rowing.ipynb_ & _Rowing_V2.ipynb_**
 
