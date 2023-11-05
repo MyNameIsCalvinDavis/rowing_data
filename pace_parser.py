@@ -1,4 +1,5 @@
 import sys
+from prettytable import PrettyTable
 
 """
 Utilization 2(U2 50% 2K Watts) O2 Continuous 30 – 60 min, 18 - 20 spm
@@ -36,19 +37,33 @@ def watts_to_pace(w):
 W = pace_to_watts(sys.argv[1])
 P = sys.argv[1]
 
+x = PrettyTable()
+
 # https://www.c2forum.com/viewtopic.php?t=11429
-cats = ["UT2", "UT1", "AT", "TR"]
-wo_l = ["30-60m", "10-30m", "5-20m", "1.5-5m"]
-SR = ["18-20", "20-24", "24-28", "28-32"]
-paces_s = [22, 18, 99, 99] # 2K-X
-paces_p = [0.55, 0.65, 0.75, 1.05] # 2K*X
+paces_pl = [0.50, 0.60, 0.70, 0.80, 0.60, 0.65, 0.70, 0.75]
+paces_ph = [0.60, 0.70, 0.80, 1.05, 0.65, 0.70, 0.75, 0.80]
+paces_a = [watts_to_pace(round((x+y)/2,2)*W) for x,y in zip(paces_pl, paces_ph)]
 
-s = "{:5} {:^5} | {:^10}     {:^6}\n".format("CAT", "SR", "%2KW", "WL")
-s += "======================================================\n"
-for i,_ in enumerate(cats):
-    s += "{:5} {:5} | {:10} ... {:6}\n".format(cats[i], SR[i],
-        "({:3}%) ".format(int(paces_p[i]*100)) + watts_to_pace(W * paces_p[i]),
-        wo_l[i]
-    )
+combo_pace_l = [watts_to_pace(x*W) for x in paces_pl]
+combo_pace_h = [watts_to_pace(x*W) for x in paces_ph]
+combo_p = []
+combo_pace_num = []
 
-print(s)
+# Create X%-Y% strings
+for l,h in zip(paces_pl, paces_ph):
+    combo_p.append(str(int(l*100)) + "-" + str(int(h*100)))
+
+# Create X:XX-Y:YY strings
+for l,h in zip(combo_pace_l, combo_pace_h):
+    combo_pace_num.append(l + "-" + h)
+
+
+x.add_column("CAT", ["UT2", "UT1", "AT", "TR", "MP", "HMP", "10K", "5K"])
+x.add_column("%", combo_p)
+x.add_column("Pace", combo_pace_num)
+x.add_column("Pace Avg", paces_a)
+
+for n, l in enumerate(x.get_string().split('\n')):
+    if n == 7:
+        print("+-----+--------+-----------+----------+")
+    print(l)
