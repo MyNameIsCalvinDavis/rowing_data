@@ -3,7 +3,7 @@ Scripts that keep track of parsed rowing data
 
 **_pace_parser.py_**
 
-Plug in a 2K pace to create a small chart depicting other threshold workout paces, based on various metrics.
+Plug in a 2K pace to create a small chart depicting training paces for other workout bands based on your time. Alternatively, plug in a time from any other distance and view approximate training paces using Paul's Law, based on your time for that distance. 
 
 ![image](/pictures/p2.png)
 
